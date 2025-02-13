@@ -28,13 +28,17 @@ Step 6 - Run the following command in a command window (while in the HotelBookin
   
          dotnet ef migrations add InitialCreate 
 
-***OR*** if you don't have the .NET core CLI installed you can do this in the Visual Studio Package Manager Console: Add-Migration InitialCreate
+***OR*** if you don't have the .NET core CLI installed you can do this in the Visual Studio Package Manager Console: 
+
+         Add-Migration InitialCreate
 
 Step 7 - Run the following command in a command window (while in the HotelBooking.API project directory)
   
          dotnet ef database update 
 
-***OR*** if you don't have the .NET core CLI installed you can do this in the Visual Studio Package Manager Console: Update-Database
+***OR*** if you don't have the .NET core CLI installed you can do this in the Visual Studio Package Manager Console: 
+
+         Update-Database
 
 Step 8 - Open Sql Server Management Studio (use the sa account and the password WaracleRocks! to connect.) In the Hotels database (created by 
          the previous step) run the following SQL script:
