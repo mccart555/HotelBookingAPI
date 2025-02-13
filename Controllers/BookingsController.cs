@@ -17,7 +17,7 @@ public class BookingsController(HotelDbContext context) : ControllerBase
 {
     // GET: api/Bookings
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Booking>>> GetBookingAsync()
+    public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsAsync()
     {
         return await context.Booking.ToListAsync();
     }
