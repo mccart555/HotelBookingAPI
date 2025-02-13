@@ -44,6 +44,7 @@ public class HotelsController(HotelDbContext context) : ControllerBase
         }
     }
 
+    // GET: api/ResetData
     [HttpGet("ResetData")]
     public async Task<ActionResult<IEnumerable<Hotel>>> ResetData()
     {
