@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelBookingAPI", "HotelBookingAPI.csproj", "{036A28B4-1E97-4071-A1CC-5A64378AE325}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelBooking.API", "HotelBooking.API.csproj", "{036A28B4-1E97-4071-A1CC-5A64378AE325}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

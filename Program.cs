@@ -1,4 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using HotelDbContext = HotelBooking.API.HotelDbContext;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Configuration
+var configurationBuilder = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddUserSecrets<Program>();
+
+var config = configurationBuilder.Build();
+
+builder.Services.AddDbContext<HotelDbContext>(options =>
+    options.UseSqlServer(config.GetConnectionString("SqlServer")));
 
 // Add services to the container.
 
@@ -9,7 +24,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
