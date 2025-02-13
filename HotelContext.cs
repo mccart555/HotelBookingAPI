@@ -25,7 +25,7 @@ public class HotelDbContext(
         if (!optionsBuilder.IsConfigured)
         {
             optionsBuilder.UseLoggerFactory(
-                new LoggerFactory(new[] { new DebugLoggerProvider() }));
+                new LoggerFactory([new DebugLoggerProvider()]));
         }
 
     }

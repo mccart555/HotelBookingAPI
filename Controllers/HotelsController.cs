@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HotelBooking.API;
 using HotelBooking.API.Models;
+using Microsoft.Data.SqlClient;
 
 namespace HotelBooking.API.Controllers;
 
@@ -41,7 +42,21 @@ public class HotelsController(HotelDbContext context) : ControllerBase
         {
             return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving data: {ex.Message}");
         }
+    }
 
+    [HttpGet("ResetData")]
+    public async Task<ActionResult<IEnumerable<Hotel>>> ResetData()
+    {
+        try
+        {
+            var sqlCommand = "DELETE FROM [Hotels].[dbo].[Booking]";
+            await context.Database.ExecuteSqlRawAsync(sqlCommand);
+            return Ok(new { message = "SQL command executed successfully - all test data reset to default state" });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, $"Error executing SQL query: {ex.Message}");
+        }
     }
 }
 

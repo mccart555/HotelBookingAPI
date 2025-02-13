@@ -50,7 +50,7 @@ Step 9 - Run the project using Visual Studio.
   "Paid": true,
   "Arrival": "2025-04-13T16:52:50.130Z",
   "Departure": "2025-04-15T16:52:50.130Z",
-  "NumberOfGuests": 4,
+  "NumberOfGuests": 2,
   "Breakfast": true
 }
 

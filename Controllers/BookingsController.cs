@@ -45,13 +45,19 @@ public class BookingsController(HotelDbContext context) : ControllerBase
     }
 
     // GET: api/GetBooking/id
-    [HttpGet]
-    private async Task<ActionResult<Booking?>> GetBooking(int id)
+    [HttpGet("GetBooking")]
+    public async Task<ActionResult<Booking>> GetBooking(int id)
     {
         try
         {
             var booking = await context.Booking.FirstOrDefaultAsync(e => e.Id == id);
-            return Ok(booking ?? null);
+
+            if (booking is null)
+            {
+                return Conflict(new { message = "No booking exists for that id" });
+
+            }
+            return Ok(booking);
         }
         catch (Exception ex)
         {
