@@ -19,7 +19,7 @@ public class BookingsController(HotelDbContext context) : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsAsync()
     {
-        return await context.Booking.ToListAsync();
+        return await context.Bookings.ToListAsync();
     }
 
     // GET: api/AvailableRooms
@@ -29,9 +29,9 @@ public class BookingsController(HotelDbContext context) : ControllerBase
     {
         try
         {
-            var availableRooms = await context.Room.Where(room =>
+            var availableRooms = await context.Rooms.Where(room =>
                 room.Capacity >= minCapacity &&
-                !context.Booking.Any(booking =>
+                !context.Bookings.Any(booking =>
                     booking.RoomId == room.Id &&
                     DateOnly.FromDateTime(booking.Arrival) < endDate &&
                     DateOnly.FromDateTime(booking.Departure) > startDate)).ToListAsync();
@@ -50,7 +50,7 @@ public class BookingsController(HotelDbContext context) : ControllerBase
     {
         try
         {
-            var booking = await context.Booking.FirstOrDefaultAsync(e => e.Id == id);
+            var booking = await context.Bookings.FirstOrDefaultAsync(e => e.Id == id);
 
             if (booking is null)
                 return Conflict(new { message = "No booking exists for that id" });
@@ -71,19 +71,21 @@ public class BookingsController(HotelDbContext context) : ControllerBase
         try
         {
             // Get the list of available rooms
-            var roomsAvailable = await context.Room.Where(room =>
+            var roomsAvailable = await context.Rooms.Where(room =>
                 room.Capacity >= newBooking.NumberOfGuests &&
-                !context.Booking.Any(booking =>
+                !context.Bookings.Any(booking =>
                     booking.RoomId == room.Id &&
                     DateOnly.FromDateTime(booking.Arrival) < DateOnly.FromDateTime(newBooking.Departure) &&
-                    DateOnly.FromDateTime(booking.Departure) > DateOnly.FromDateTime(newBooking.Arrival))).ToListAsync(); ;
+                    DateOnly.FromDateTime(booking.Departure) > DateOnly.FromDateTime(newBooking.Arrival))).ToListAsync();
 
             // Check if the room is available
             if (roomsAvailable.All(x => x.Id != newBooking.RoomId))
+            {
                 return Conflict(new { message = "No available room for the specified dates." });
+            }
             else
             {
-                context.Booking.Add(newBooking);
+                context.Bookings.Add(newBooking);
                 await context.SaveChangesAsync();
                 return Ok(newBooking);
             }

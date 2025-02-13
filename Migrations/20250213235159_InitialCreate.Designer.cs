@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelBooking.API.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    [Migration("20250213172653_InitialCreate")]
+    [Migration("20250213235159_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -87,7 +87,7 @@ namespace HotelBooking.API.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("Booking");
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("HotelBooking.API.Models.Hotel", b =>
@@ -121,7 +121,7 @@ namespace HotelBooking.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Hotel");
+                    b.ToTable("Hotels");
                 });
 
             modelBuilder.Entity("HotelBooking.API.Models.Room", b =>
@@ -150,7 +150,7 @@ namespace HotelBooking.API.Migrations
 
                     b.HasIndex("HotelId");
 
-                    b.ToTable("Room");
+                    b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("HotelBooking.API.Models.Booking", b =>

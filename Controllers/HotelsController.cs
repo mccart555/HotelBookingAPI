@@ -21,7 +21,7 @@ public class HotelsController(HotelDbContext context) : ControllerBase
     {
         try
         {
-            return Ok(await context.Hotel.ToListAsync());
+            return Ok(await context.Hotels.ToListAsync());
         }
         catch (Exception ex)
         {
@@ -35,7 +35,7 @@ public class HotelsController(HotelDbContext context) : ControllerBase
     {
         try
         {
-            return Ok(await context.Hotel
+            return Ok(await context.Hotels
                 .Where(e => e.Name.Contains(searchString)).ToListAsync());
         }
         catch (Exception ex)
