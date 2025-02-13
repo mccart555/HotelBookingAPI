@@ -17,7 +17,7 @@ public class HotelsController(HotelDbContext context) : ControllerBase
 {
     // GET: api/Hotels
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
+    public async Task<ActionResult<IEnumerable<Hotel>>> GetHotelsAsync()
     {
         try
         {
@@ -31,7 +31,7 @@ public class HotelsController(HotelDbContext context) : ControllerBase
 
     // GET: api/SearchHotel/searchString
     [HttpGet("SearchHotel")]
-    public async Task<ActionResult<IEnumerable<Hotel>>> SearchHotel(string searchString)
+    public async Task<ActionResult<IEnumerable<Hotel>>> SearchHotelAsync(string searchString)
     {
         try
         {
@@ -46,7 +46,7 @@ public class HotelsController(HotelDbContext context) : ControllerBase
 
     // GET: api/ResetData
     [HttpGet("ResetData")]
-    public async Task<ActionResult<IEnumerable<Hotel>>> ResetData()
+    public async Task<ActionResult<IEnumerable<Hotel>>> ResetDataAsync()
     {
         try
         {

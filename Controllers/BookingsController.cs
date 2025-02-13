@@ -17,14 +17,14 @@ public class BookingsController(HotelDbContext context) : ControllerBase
 {
     // GET: api/Bookings
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Booking>>> GetBooking()
+    public async Task<ActionResult<IEnumerable<Booking>>> GetBookingAsync()
     {
         return await context.Booking.ToListAsync();
     }
 
     // GET: api/AvailableRooms
     [HttpGet("AvailableRooms")]
-    public async Task<ActionResult<IEnumerable<Room>>> AvailableRooms(DateOnly startDate, DateOnly endDate,
+    public async Task<ActionResult<IEnumerable<Room>>> AvailableRoomsAsync(DateOnly startDate, DateOnly endDate,
         int minCapacity)
     {
         try
@@ -46,7 +46,7 @@ public class BookingsController(HotelDbContext context) : ControllerBase
 
     // GET: api/GetBooking/id
     [HttpGet("GetBooking")]
-    public async Task<ActionResult<Booking>> GetBooking(int id)
+    public async Task<ActionResult<Booking>> GetBookingAsync(int id)
     {
         try
         {
@@ -68,7 +68,7 @@ public class BookingsController(HotelDbContext context) : ControllerBase
 
     // POST: api/AddBooking
     [HttpPost("AddBooking")]
-    public async Task<ActionResult<Booking>> AddBooking([FromBody] Booking newBooking)
+    public async Task<ActionResult<Booking>> AddBookingAsync([FromBody] Booking newBooking)
     {
         try
         {
