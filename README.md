@@ -63,4 +63,6 @@ Container (Docker File) in the drop down in Visual Studio and run as a container
   "Breakfast": true
 }
 
-All EFCore SQL goes to console for debugging and optimisation.
+All EFCore SQL goes to console for debugging and optimisation.  
+
+With regards to using the SA Account for SQL Server - bad I know, but I thought it would be ok for this test to keep it simple.
