@@ -53,10 +53,8 @@ public class BookingsController(HotelDbContext context) : ControllerBase
             var booking = await context.Booking.FirstOrDefaultAsync(e => e.Id == id);
 
             if (booking is null)
-            {
                 return Conflict(new { message = "No booking exists for that id" });
 
-            }
             return Ok(booking);
         }
         catch (Exception ex)
@@ -73,12 +71,12 @@ public class BookingsController(HotelDbContext context) : ControllerBase
         try
         {
             // Get the list of available rooms
-            var roomsAvailable = context.Room.Where(room =>
+            var roomsAvailable = await context.Room.Where(room =>
                 room.Capacity >= newBooking.NumberOfGuests &&
                 !context.Booking.Any(booking =>
                     booking.RoomId == room.Id &&
                     DateOnly.FromDateTime(booking.Arrival) < DateOnly.FromDateTime(newBooking.Departure) &&
-                    DateOnly.FromDateTime(booking.Departure) > DateOnly.FromDateTime(newBooking.Arrival))).ToList();
+                    DateOnly.FromDateTime(booking.Departure) > DateOnly.FromDateTime(newBooking.Arrival))).ToListAsync(); ;
 
             // Check if the room is available
             if (roomsAvailable.All(x => x.Id != newBooking.RoomId))
