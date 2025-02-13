@@ -15,16 +15,12 @@ var config = configurationBuilder.Build();
 builder.Services.AddDbContext<HotelDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("SqlServer")));
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
-
 
 if (app.Environment.IsDevelopment())
 {
