@@ -50,7 +50,7 @@ public class HotelsController(HotelDbContext context) : ControllerBase
     {
         try
         {
-            var sqlCommand = "DELETE FROM [Hotels].[dbo].[Booking]";
+            var sqlCommand = "DELETE FROM [Hotels].[dbo].[Bookings]";
             await context.Database.ExecuteSqlRawAsync(sqlCommand);
             return Ok(new { message = "SQL command executed successfully - all test data reset to default state" });
         }
