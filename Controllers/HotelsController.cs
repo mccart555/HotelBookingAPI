@@ -29,7 +29,7 @@ public class HotelsController(HotelDbContext context) : ControllerBase
         }
     }
 
-    // GET: api/SearchHotel/searchString
+    // GET: api/Hotels/SearchHotel/searchString
     [HttpGet("SearchHotels")]
     public async Task<ActionResult<IEnumerable<Hotel>>> SearchHotelsAsync(string searchString)
     {
