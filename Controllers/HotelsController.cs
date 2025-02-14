@@ -30,8 +30,8 @@ public class HotelsController(HotelDbContext context) : ControllerBase
     }
 
     // GET: api/SearchHotel/searchString
-    [HttpGet("SearchHotel")]
-    public async Task<ActionResult<IEnumerable<Hotel>>> SearchHotelAsync(string searchString)
+    [HttpGet("SearchHotels")]
+    public async Task<ActionResult<IEnumerable<Hotel>>> SearchHotelsAsync(string searchString)
     {
         try
         {
@@ -41,22 +41,6 @@ public class HotelsController(HotelDbContext context) : ControllerBase
         catch (Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving data: {ex.Message}");
-        }
-    }
-
-    // GET: api/ResetData
-    [HttpGet("ResetData")]
-    public async Task<ActionResult<IEnumerable<Hotel>>> ResetDataAsync()
-    {
-        try
-        {
-            var sqlCommand = "DELETE FROM [HotelBookings].[dbo].[Bookings]";
-            await context.Database.ExecuteSqlRawAsync(sqlCommand);
-            return Ok(new { message = "SQL command executed successfully - all test data reset to default state" });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, $"Error executing SQL query: {ex.Message}");
         }
     }
 }

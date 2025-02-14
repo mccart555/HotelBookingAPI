@@ -96,5 +96,21 @@ public class BookingsController(HotelDbContext context) : ControllerBase
         }
     }
 
+    // DELETE: api/Bookings
+    [HttpDelete]
+    public async Task<ActionResult<IEnumerable<Hotel>>> ResetDataAsync()
+    {
+        try
+        {
+            var sqlCommand = "DELETE FROM [HotelBookings].[dbo].[Bookings]";
+            await context.Database.ExecuteSqlRawAsync(sqlCommand);
+            return Ok(new { message = "SQL command executed successfully - all test data reset to default state" });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, $"Error executing SQL query: {ex.Message}");
+        }
+    }
+
 }
 
