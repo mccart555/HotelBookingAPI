@@ -20,7 +20,7 @@ Step 5 - Create a Secrets File (Right click on the project and select "Manage Us
 
          {
            "ConnectionStrings": {
-             "SqlServer": "Server=localhost,1433;Database=Hotels;User Id=sa;Password=WaracleRocks!;TrustServerCertificate=True;"
+             "SqlServer": "Server=localhost,1433;Database=HotelBookings;User Id=sa;Password=WaracleRocks!;TrustServerCertificate=True;"
            }
          }
 
@@ -32,7 +32,7 @@ Step 6 - Run the following command in a command window (while in the HotelBookin
 
          Update-Database
 
-Step 7 - Open Sql Server Management Studio (use the sa account and the password WaracleRocks! to connect.) In the Hotels database (created by 
+Step 7 - Open Sql Server Management Studio (use the sa account and the password WaracleRocks! to connect.) In the HotelBookings database (created by 
          the previous step) run the following SQL script:
   
          SqlTestData\TestData.sql
